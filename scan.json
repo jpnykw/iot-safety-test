@@ -1,0 +1,120 @@
+{
+    "nmaprun": {
+        "@args": "nmap -oX - -sS -p 0-65535 localhost",
+        "@scanner": "nmap",
+        "@start": "1557736744",
+        "@startstr": "Mon May 13 17:39:04 2019",
+        "@version": "7.40",
+        "@xmloutputversion": "1.04",
+        "debugging": {
+            "@level": "0"
+        },
+        "host": {
+            "@endtime": "1557736755",
+            "@starttime": "1557736744",
+            "address": {
+                "@addr": "127.0.0.1",
+                "@addrtype": "ipv4"
+            },
+            "hostnames": {
+                "hostname": [
+                    {
+                        "@name": "localhost",
+                        "@type": "user"
+                    },
+                    {
+                        "@name": "localhost",
+                        "@type": "PTR"
+                    }
+                ]
+            },
+            "ports": {
+                "extraports": {
+                    "@count": "65533",
+                    "@state": "closed",
+                    "extrareasons": {
+                        "@count": "65533",
+                        "@reason": "resets"
+                    }
+                },
+                "port": [
+                    {
+                        "@portid": "22",
+                        "@protocol": "tcp",
+                        "service": {
+                            "@conf": "3",
+                            "@method": "table",
+                            "@name": "ssh"
+                        },
+                        "state": {
+                            "@reason": "syn-ack",
+                            "@reason_ttl": "64",
+                            "@state": "open"
+                        }
+                    },
+                    {
+                        "@portid": "23",
+                        "@protocol": "tcp",
+                        "service": {
+                            "@conf": "3",
+                            "@method": "table",
+                            "@name": "telnet"
+                        },
+                        "state": {
+                            "@reason": "syn-ack",
+                            "@reason_ttl": "64",
+                            "@state": "open"
+                        }
+                    },
+                    {
+                        "@portid": "631",
+                        "@protocol": "tcp",
+                        "service": {
+                            "@conf": "3",
+                            "@method": "table",
+                            "@name": "ipp"
+                        },
+                        "state": {
+                            "@reason": "syn-ack",
+                            "@reason_ttl": "64",
+                            "@state": "open"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "@reason": "localhost-response",
+                "@reason_ttl": "0",
+                "@state": "up"
+            },
+            "times": {
+                "@rttvar": "3",
+                "@srtt": "12",
+                "@to": "100000"
+            }
+        },
+        "runstats": {
+            "finished": {
+                "@elapsed": "11.05",
+                "@exit": "success",
+                "@summary": "Nmap done at Mon May 13 17:39:15 2019; 1 IP address (1 host up) scanned in 11.05 seconds",
+                "@time": "1557736755",
+                "@timestr": "Mon May 13 17:39:15 2019"
+            },
+            "hosts": {
+                "@down": "0",
+                "@total": "1",
+                "@up": "1"
+            }
+        },
+        "scaninfo": {
+            "@numservices": "65536",
+            "@protocol": "tcp",
+            "@services": "0-65535",
+            "@type": "syn"
+        },
+        "verbose": {
+            "@level": "0"
+        }
+    }
+}
