@@ -9,6 +9,6 @@ electron .
 端末のパスワードを入力する事ができません…  
 現状，正しい実装方法と対処方法がわかりません…  
 
-ひとまず値を`console.log()`へ出力しています.
-electronのwindow内でctrl + shift + iを押すか，
+ひとまず値を`console.log()`へ出力しています.  
+electronのwindow内でctrl + shift + iを押すか，  
 上部メニューよりview → Toggle Developer Toolsで切り替えてください.
