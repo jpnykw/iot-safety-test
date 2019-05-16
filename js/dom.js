@@ -1,10 +1,10 @@
 console.log('Success load dom.js');
 
-const os = require('os');
+const os = require('electron').remote.require('os');
 
 // こいつでコマンドを実行できます. 例: execSync('ls');
 // 戻り値はバイナリなので文字列を取り出す場合は.toString()を追加
-const execSync = require('child_process').execSync;
+const execSync = require('electron').remote.require('child_process').execSync;
 
 (() => {
     const system = os.type().toString();
