@@ -18,9 +18,7 @@ def getNetworkAddresses():
             addr = ipaddress.ip_address(ipv4_data["addr"])
             netmask = ipv4_data["netmask"]
             if not (addr.is_link_local or addr.is_loopback):
-                print('valid ip: %s' % addr)
                 network = ipaddress.ip_network('%s/%s'%(addr, netmask), False)
-                print('network addr: %s' % network)
                 res.append(network)
     return res
 
