@@ -3,7 +3,7 @@ import re
 import sys
 
 host = sys.argv[1]	#接続先ホスト(実行時の引数で指定)
-user_list = ["test","root", "rootuser"]	#試行ユーザ名リスト
+user_list = ["test", "rootuser"]	#試行ユーザ名リスト
 password_list = ["test", "123","root"]	#試行パスワードリスト
 timeout_t = 5	#ユーザ名入力時等の応答待ち
 
@@ -31,7 +31,7 @@ for user in user_list :
 		res2 = tn.read_until(b"GNU/Linux", timeout_t)
 		if res2.decode("utf-8").endswith("GNU/Linux"):
 			print("login - success")
-			tn.close()
+			#tn.close()
 
 			#成功時は終了と共に成功したユーザ名/パスワードの表示
 			print("----------------------")
@@ -41,6 +41,8 @@ for user in user_list :
 			#print("\n------\n")
 			#print (res2.decode("utf-8"))
 			#print("\n------\n")
+
+			tn.close()
 
 			exit()
 		else :
