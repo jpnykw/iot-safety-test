@@ -14,6 +14,10 @@ body {
     top: 50%;
 }
 
+.hide {
+    opacity: 0;
+}
+
 /*
     --- for
     --- home
@@ -68,4 +72,32 @@ body {
 
     position: relative;
     font-size: 50px;
+}
+
+#detecting {
+    height: 600px;
+    width: 450px;
+
+    border-radius: 60px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+
+    overflow-y: scroll;
+}
+
+#detecting p {
+    color: #acacac;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 14px;
+    border-bottom: solid 3px #f4f4f4;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #d1d1d1;
+    border-radius: 100px;
+    height: 20px;
 }

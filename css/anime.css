@@ -7,3 +7,13 @@
         opacity: 0;
     }
 }
+
+@keyframes toShow {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
