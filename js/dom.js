@@ -5,6 +5,8 @@ const os = require('electron').remote.require('os');
 // こいつでコマンドを実行できます. 例: execSync('ls');
 // 戻り値はバイナリなので文字列を取り出す場合は.toString()を追加
 const spawnSync = require('child_process').spawnSync;
+let curHost = '';
+let loginInfo = {};
 
 (() => {
     const system = os.type().toString();
@@ -40,41 +42,16 @@ const spawnSync = require('child_process').spawnSync;
                 pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
                 json.hosts.forEach(address => {
                     const div = document.createElement('div');
+                    div.id = 'addr-' + address.replace(/\./g, '-')
 
                     // address
                     const p = document.createElement('div');
                     p.innerText = address;
-                    p.id = address;
 
                     const i = document.createElement('i');
-                    const status = (Math.random() * 3) >> 0; // 状態
-
-                    if (status == 0) {
-                        i.classList.add('far', 'fa-clock'); // 判定中
-                        div.title = '判定中';
-                    } else if (status == 1) {
-                        i.classList.add('fas', 'fa-check'); // 安全
-                        div.title = 'パスワードは安全です';
-
-                        i.style = `
-                            background: #0beb8d;
-                        `;
-                    } else {
-                        i.classList.add('fas', 'fa-times'); // 危険
-                        div.title = 'パスワードが突破されました(๑•ૅㅁ•๑)ｳﾞｧﾈ';
-
-                        i.style = `
-                            background: #ff4d58;
-                            margin-right: 0px;
-                            padding: 4px 6px;
-                        `;
-
-                        // ここでパスワード変更するクリックイベントを登録する
-                        div.addEventListener('click', () => {
-                            pages.detecting.style.animation = 'toHide 500ms ease-in-out forwards';
-                            pages.modal.style.animation = 'toShow 500ms ease-in-out forwards';
-                        });
-                    }
+                    i.classList.add('far', 'fa-clock'); // 判定中
+                    i.id = 'addr-' + address.replace(/\./g, '-') + '-status'
+                    div.title = '判定中';
 
                     div.appendChild(p);
                     div.appendChild(i);
@@ -101,6 +78,7 @@ const spawnSync = require('child_process').spawnSync;
                 // パスワード変更
                 const password = pages.modal.getElementsByTagName('input');
                 pages.modal.getElementsByTagName('button')[0].addEventListener('click', () => {
+                    console.log(curHost, loginInfo)
                     if (password[0].value == password[1].value && password[0].value.trim() != '') {
                         console.log('password is correct');
 
@@ -112,28 +90,85 @@ const spawnSync = require('child_process').spawnSync;
                         pages.modal.style.animation = 'toHide 500ms ease-in-out forwards';
 
                         setTimeout(() => {
+                            spawnSync(`python3 change.py ${curHost} ${loginInfo.user} ${loginInfo.pass} ${password[0].value}`)
+
                             pages.good.style.animationPlayState = 'paused';
                             pages.modal.style.animationPlayState = 'paused';
 
                             pages.good.style.animation = 'toHide 500ms ease-in-out forwards';
                             pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
-                        }, 2000);
+                        });
                     }
                 });
-            }, 600);
+                setTimeout(() => {
+                    tryLogin(json)
+                }, 100)
+            }, 100);
         };
 
         const tryLogin = json => {
+            console.log(json)
             const hosts = json.hosts;
+            let js;
             for (const host of hosts) {
-                const command = `${system.match(/Windows/) ? 'wsl' : ''} python3 login.py ${hosts}`;
-                const result = spawnSync(command);
-                const stdout = result.output[1].toString();
-                const stderr = result.output[2].toString();
-                console.log(stdout);
-                console.log(stderr);
-                const json = JSON.parse(stdout);
+                const div = document.querySelector('#' + 'addr-' + host.replace(/\./g, '-'))
+                const i = document.querySelector('#' + 'addr-' + host.replace(/\./g, '-') + '-status')
+                try {
+                    const command = `python3 login.py ${host}`;
+                    const result = spawnSync(command);
+                    console.log(result)
+                    const stdout = result.output[1].toString();
+                    const stderr = result.output[2].toString();
+                    console.log(stdout);
+                    console.log(stderr);
+                    js = JSON.parse(stdout);
+                    if (js.result === 'failed') {
+                        i.classList.remove('fa-clock')
+                        i.classList.add('fa-check'); // 安全
+                        div.title = 'パスワードは安全です';
 
+                        i.style = `
+                            background: #0beb8d;
+                        `;
+                        div.addEventListener('click', () => {
+                            curHost = host
+                            loginInfo = js
+                            pages.detecting.style.animation = 'toHide 500ms ease-in-out forwards';
+                            pages.modal.style.animation = 'toShow 500ms ease-in-out forwards';
+                        });
+                    } else {
+                        i.classList.remove('far', 'fa-clock')
+                        i.classList.add('fas', 'fa-times'); // 危険
+                        div.title = 'パスワードが突破されました(๑•ૅㅁ•๑)ｳﾞｧﾈ';
+
+                        i.style = `
+                            background: #ff4d58;
+                            margin-right: 0px;
+                            padding: 4px 6px;
+                        `;
+
+                        // ここでパスワード変更するクリックイベントを登録する
+                        div.addEventListener('click', () => {
+                            curHost = host
+                            loginInfo = js
+                            pages.detecting.style.animation = 'toHide 500ms ease-in-out forwards';
+                            pages.modal.style.animation = 'toShow 500ms ease-in-out forwards';
+                        });
+                    }
+                } catch (e) {
+                    i.classList.remove('far', 'fa-clock')
+                    i.classList.add('fas', 'fa-check'); // 安全
+                    div.title = 'パスワードは安全です';
+
+                    i.style = `
+                        background: #0beb8d;
+                    `;
+                    div.addEventListener('click', () => {
+                        curHost = host
+                        pages.detecting.style.animation = 'toHide 500ms ease-in-out forwards';
+                        pages.modal.style.animation = 'toShow 500ms ease-in-out forwards';
+                    });
+                }
             }
         };
     };
