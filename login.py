@@ -42,7 +42,7 @@ for user in user_list :
 			#print("\n------\n")
 			#print (res2.decode("utf-8"))
 			#print("\n------\n")
-			json.dumps({'result': 'successed', 'user': user, 'pass': password})
+			print(json.dumps({'result': 'successed', 'user': user, 'pass': password}))
 
 			tn.close()
 
@@ -50,4 +50,4 @@ for user in user_list :
 		else :
 			# print("login - failed")
 			tn.close()
-json.dumps({'result': 'failed'})
+print(json.dumps({'result': 'failed'}))
