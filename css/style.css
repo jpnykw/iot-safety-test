@@ -5,6 +5,14 @@ body {
     font-family: a-otf-ud-shin-go-pr6n,sans-serif;
     font-weight: 300;
     font-style: normal;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }
 
 .center {
@@ -16,6 +24,7 @@ body {
 
 .hide {
     opacity: 0;
+    pointer-events: none;
 }
 
 /*
@@ -87,12 +96,62 @@ body {
     z-index: 90;
 }
 
-#detecting p {
-    color: #acacac;
-    text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 14px;
-    border-bottom: solid 3px #f4f4f4;
+#detecting > div {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+
+    padding: 0 50px 40px 50px;
+    margin: 40px 0;
+
+    border-bottom: solid 2px #ececec;
+    color: #9c9c9c;
+
+    cursor: pointer;
+}
+
+
+#detecting i {
+    font-size: 12px;
+    text-align: right;
+
+    border-radius: 100px;
+    padding: 4px;
+
+    background: #a2a2a2;
+    color: white;
+}
+
+#pass-change {
+    background: #ffffff30;
+    height: 100%;
+    width: 100%;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+#pass-change .window {
+    background: white;
+    height: 500px;
+    width: 400px;
+
+    transform: translate(-50%, -50%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+#pass-change input {
+    padding: 20px 0;
+    font-size: 26px;
+    border: none;
+
+    border-bottom: solid 1px #ececec;
 }
 
 ::-webkit-scrollbar {

@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="./css/style.css">
     </head>
     <body>
-        <div id="home" class="center">
+        <div id="home" class="center hide">
             <div class="title">
                 <h1>IoT Safety Test</h1>
                 <p>ワンクリックで簡単．安全性を自動で診断．</p>
@@ -31,11 +31,20 @@
             </div>
         </div>
 
-        <div class="center hide" id="scanning">
+        <div id="scanning" class="center hide">
             <p>スキャン中</p>
         </div>
 
-        <div id="detecting" class="center hide">
+        <div id="detecting" class="center">
+        </div>
+
+        <!-- モーダルウィンドウ -->
+        <div id="pass-change" class="hide">
+            <div class="window">
+                <div><input placeholder="password"></div>
+                <div><input placeholder="password again"></div>
+                <div><button>変更</button></div>
+            </div>
         </div>
 
         <script src="js/dom.js"></script>
