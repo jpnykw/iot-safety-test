@@ -32,3 +32,4 @@ for networkAddress in networkAddresses:
 
     hosts = {'hosts': nm.all_hosts(), 'network': '%s'%networkAddress}
     print(json.dumps(hosts))
+    exit()

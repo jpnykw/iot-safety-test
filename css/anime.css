@@ -1,6 +1,7 @@
 @keyframes toHide {
     from {
         opacity: 1;
+        pointer-events: auto;
     }
 
     to {
@@ -12,9 +13,11 @@
 @keyframes toShow {
     from {
         opacity: 0;
+        pointer-events: none;
     }
 
     to {
         opacity: 1;
+        pointer-events: auto;
     }
 }

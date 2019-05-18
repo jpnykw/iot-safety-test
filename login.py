@@ -13,8 +13,8 @@ for user in user_list :
 		# print ("challenge : username ="+user+", password ="+password)
 		tn = telnetlib.Telnet(host)	#telnetへの接続
 		#ユーザ名の入力
-		tn.read_until(b"login:", timeout_t)	
-		tn.write(user.encode('ascii') + b"\n")	
+		tn.read_until(b"login:", timeout_t)
+		tn.write(user.encode('ascii') + b"\n")
 
 		#ユーザ名入力時点での接続失敗用(タイムアウトのときは未実装)
 		res1 = tn.read_until(b"Password:", timeout_t)
@@ -24,7 +24,7 @@ for user in user_list :
 			# print("login - failed")
 			tn.close()
 			continue
-		
+
 		#パスワードの入力
 		tn.write(password.encode('ascii') + b"\n")
 

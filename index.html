@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="./css/style.css">
     </head>
     <body>
-        <div id="home" class="center hide">
+        <div id="home" class="center">
             <div class="title">
                 <h1>IoT Safety Test</h1>
                 <p>ワンクリックで簡単．安全性を自動で診断．</p>
@@ -35,16 +35,22 @@
             <p>スキャン中</p>
         </div>
 
-        <div id="detecting" class="center">
+        <div id="detecting" class="center hide">
         </div>
 
-        <!-- モーダルウィンドウ -->
+        <!-- モーダルウィンドウ(for password) -->
         <div id="pass-change" class="hide">
-            <div class="window">
-                <div><input placeholder="password"></div>
-                <div><input placeholder="password again"></div>
-                <div><button>変更</button></div>
+            <div class="window center">
+                <div>新しいパスワードを入力してください</div>
+                <div><input type="password" placeholder="password"></div>
+                <div><input type="password" placeholder="password confirm"></div>
+                <div><button>変更する</button></div>
             </div>
+        </div>
+
+        <!-- いい感じのことが起こったときに表示する画面 -->
+        <div id="good" class="center hide">
+            <i class="fas fa-check center"></i>
         </div>
 
         <script src="js/dom.js"></script>

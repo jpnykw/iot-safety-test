@@ -64,7 +64,7 @@ body {
 #home .button {
     background: #0CF090;
     border: solid 12px #fff;
-    box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
 
     border-radius: 50%;
     height: 120px;
@@ -79,10 +79,15 @@ body {
 
 #home .button i {
     color: #fff;
-    text-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 
     position: relative;
     font-size: 50px;
+}
+
+
+#scanning {
+    font-size: 28px;
 }
 
 #detecting {
@@ -90,7 +95,7 @@ body {
     width: 450px;
 
     border-radius: 60px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
 
     overflow-y: scroll;
     z-index: 90;
@@ -131,27 +136,77 @@ body {
     left: 0;
     top: 0;
 
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
     z-index: 2;
 }
 
 #pass-change .window {
     background: white;
-    height: 500px;
-    width: 400px;
+    height: 600px;
+    width: 450px;
 
     transform: translate(-50%, -50%);
     position: absolute;
     left: 50%;
     top: 50%;
+
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    border-radius: 60px;
+}
+
+#pass-change .window > * {
+    margin-bottom: 60px;
+    text-align: center;
+
+    position: relative;
+    top: 100px;
 }
 
 #pass-change input {
     padding: 20px 0;
-    font-size: 26px;
+    font-size: 18px;
     border: none;
 
+    text-align: left;
+    padding-left: 30px;
     border-bottom: solid 1px #ececec;
+
+    width: 310px;
+}
+
+#pass-change button {
+    font-size: 22px;
+
+    height: 80px;
+    width: 340px;
+
+    background: #0CF090;
+    border-radius: 50px;
+    border: none;
+
+    color: #f8f8f8;
+}
+
+#good {
+    background: white;
+    height: 600px;
+    width: 450px;
+
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    border-radius: 60px;
+}
+
+#good i {
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    font-size: 70px;
+
+    background: #0cf090;
+    color: #f8f8f8;
+
+    border: solid 16px white;
+    border-radius: 100%;
+    padding: 40px;
+
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar {
@@ -162,4 +217,8 @@ body {
     background: #d1d1d1;
     border-radius: 100px;
     height: 20px;
+}
+
+::placeholder {
+    color: #e3e3e3;
 }

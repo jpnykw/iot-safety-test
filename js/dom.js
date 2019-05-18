@@ -15,10 +15,11 @@ const spawnSync = require('child_process').spawnSync;
             home: document.getElementById('home'),
             scanning: document.getElementById('scanning'),
             detecting: document.getElementById('detecting'),
-            modal: document.getElementById('pass-change')
+            modal: document.getElementById('pass-change'),
+            good: document.getElementById('good')
         };
 
-        const startButton = document.querySelector('#start-button')
+        const startButton = document.getElementById('start-button');
         startButton.addEventListener('click', () => {
             pages.home.style.animation = 'toHide 500ms ease-in-out forwards';
             pages.scanning.style.animation = 'toShow 500ms ease-in-out forwards';
@@ -27,18 +28,16 @@ const spawnSync = require('child_process').spawnSync;
 
         const detect = () => {
             // {"hosts":["172.100.0.1","172.100.0.254","172.100.1.14","172.100.1.3","172.100.1.5","172.100.3.254"],"network":"172.100.0.0/22"}
-            const json = {"hosts":["172.100.0.1","172.100.0.254","172.100.1.14","172.100.1.3","172.100.1.5","172.100.3.254"],"network":"172.100.0.0/22"};
+            // const json = {"hosts":["172.100.0.1","172.100.0.254","172.100.1.14","172.100.1.3","172.100.1.5","172.100.3.254"],"network":"172.100.0.0/22"};
             setTimeout(() => {
                 const command = 'python3 ./portScan/device_scan.py';
-                /*
                 const result = spawnSync(command, { shell: true });
                 const stdout = result.output[1].toString();
                 const stderr = result.output[2].toString();
                 const json = JSON.parse(stdout);
-                */
-                const json = {"hosts":["172.100.0.1","172.100.0.254","172.100.1.14","172.100.1.3","172.100.1.5","172.100.3.254"],"network":"172.100.0.0/22"};
-                // pages.scanning.style.animation = 'toHide 500ms ease-in-out forwards';
-                // pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
+                // const json = {"hosts":["172.100.0.1","172.100.0.254","172.100.1.14","172.100.1.3","172.100.1.5","172.100.3.254"],"network":"172.100.0.0/22"};
+                pages.scanning.style.animation = 'toHide 500ms ease-in-out forwards';
+                pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
                 json.hosts.forEach(address => {
                     const div = document.createElement('div');
 
@@ -90,19 +89,41 @@ const spawnSync = require('child_process').spawnSync;
                 modalForm.addEventListener('mouseleave', () => isClose = true );
 
                 pages.modal.addEventListener('click', () => {
-                    alert('clicked');
-
                     if (isClose) {
-                        alert('close');
+                        pages.detecting.style.animationPlayState = 'paused';
+                        pages.modal.style.animationPlayState = 'paused';
+
+                        pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
+                        pages.modal.style.animation = 'toHide 500ms ease-in-out forwards';
                     }
                 });
-            }, 0);
+
+                // パスワード変更
+                const password = pages.modal.getElementsByTagName('input');
+                pages.modal.getElementsByTagName('button')[0].addEventListener('click', () => {
+                    if (password[0].value == password[1].value && password[0].value.trim() != '') {
+                        console.log('password is correct');
+
+                        pages.detecting.style.animationPlayState = 'paused';
+                        pages.modal.style.animationPlayState = 'paused';
+
+                        // pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
+                        pages.good.style.animation = 'toShow 500ms ease-in-out forwards';
+                        pages.modal.style.animation = 'toHide 500ms ease-in-out forwards';
+
+                        setTimeout(() => {
+                            pages.good.style.animationPlayState = 'paused';
+                            pages.modal.style.animationPlayState = 'paused';
+
+                            pages.good.style.animation = 'toHide 500ms ease-in-out forwards';
+                            pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
+                        }, 2000);
+                    }
+                });
+            }, 600);
         };
 
-        // test
-        detect();
-
-        const tryLogin = (json) => {
+        const tryLogin = json => {
             const hosts = json.hosts;
             for (const host of hosts) {
                 const command = `${system.match(/Windows/) ? 'wsl' : ''} python3 login.py ${hosts}`;
