@@ -29,6 +29,7 @@ body {
 
     position: relative;
     top: 260px;
+    z-index: 100;
 }
 
 #home .title {
@@ -64,6 +65,7 @@ body {
     top: 230px;
 
     cursor: pointer;
+    z-index: 100;
 }
 
 #home .button i {
@@ -82,6 +84,7 @@ body {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 
     overflow-y: scroll;
+    z-index: 90;
 }
 
 #detecting p {
