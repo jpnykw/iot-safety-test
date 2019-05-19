@@ -93,34 +93,22 @@ let loginInfo = {};
                         pages.modal.style.animation = 'toHide 500ms ease-in-out forwards';
 
                         setTimeout(() => {
-<<<<<<< HEAD
-                            spawnSync(`python3 change.py ${curHost} ${loginInfo.user} ${loginInfo.pass} ${password[0].value}`, [], {shell: true})
-=======
                             setTimeout(() => {
                                 spawnSync(`python3 change.py ${curHost} ${loginInfo.user} ${loginInfo.pass} ${password[0].value}`)
                             }, 600);
->>>>>>> 9fba3351aab5ed6a46b8b8f22254d7093ed48da4
 
                             pages.good.style.animationPlayState = 'paused';
                             pages.modal.style.animationPlayState = 'paused';
 
                             pages.good.style.animation = 'toHide 500ms ease-in-out forwards';
                             pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
-<<<<<<< HEAD
-                        }, 600);
-=======
                         }, 200);
->>>>>>> 9fba3351aab5ed6a46b8b8f22254d7093ed48da4
                     }
                 });
 
                 setTimeout(() => {
-                    tryLogin(json)
-<<<<<<< HEAD
-                }, 600)
-=======
-                }, 100)
->>>>>>> 9fba3351aab5ed6a46b8b8f22254d7093ed48da4
+                    tryLogin(json);
+                }, 100);
             }, 600);
         };
 
