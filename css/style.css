@@ -13,6 +13,8 @@ body {
     height: 100%;
     width: 100%;
     margin: 0;
+
+    overflow-x: hidden;
 }
 
 .center {
@@ -208,6 +210,30 @@ body {
     padding: 40px;
 
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+#loading span {
+    display: inline-block;
+    border-radius: 100%;
+    background: #d3d3d3;
+
+    height: 10px;
+    width: 10px;
+
+    position: relative;
+    top: 40px;
+}
+
+#loading span:nth-of-type(1) {
+    animation: loadMotion 500ms ease-in-out infinite;
+}
+
+#loading span:nth-of-type(2) {
+    animation: loadMotion 500ms 100ms ease-in-out infinite;
+}
+
+#loading span:nth-of-type(3) {
+    animation: loadMotion 500ms 200ms ease-in-out infinite;
 }
 
 ::-webkit-scrollbar {
