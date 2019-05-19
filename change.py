@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import telnetlib
 import re
 import sys
@@ -6,7 +7,7 @@ import time
 host = sys.argv[1]	#接続先ホスト(実行時の引数で指定)
 user = sys.argv[2]	#試行ユーザ名リスト
 password = sys.argv[3]	#試行パスワードリスト
-timeout_t = 5	#ユーザ名入力時等の応答待ち
+timeout_t = 10	#ユーザ名入力時等の応答待ち
 new_password = sys.argv[4]
 
 print("----------------------")

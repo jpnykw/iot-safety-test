@@ -1,12 +1,13 @@
+# -*- coding: utf-8 -*-
 import telnetlib
 import re
 import sys
 import json
 
 host = sys.argv[1]	#接続先ホスト(実行時の引数で指定)
-user_list = ["test", "rootuser"]	#試行ユーザ名リスト
-password_list = ["test", "123","root"]	#試行パスワードリスト
-timeout_t = 5	#ユーザ名入力時等の応答待ち
+user_list = ["rootuser"]	#試行ユーザ名リスト
+password_list = ["root"]	#試行パスワードリスト
+timeout_t = 10	#ユーザ名入力時等の応答待ち
 
 for user in user_list :
 	for password in password_list :
