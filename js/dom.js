@@ -18,6 +18,7 @@ let loginInfo = {};
             scanning: document.getElementById('scanning'),
             detecting: document.getElementById('detecting'),
             modal: document.getElementById('pass-change'),
+            loading: document.getElementById('loading'),
             good: document.getElementById('good')
         };
 
@@ -25,6 +26,7 @@ let loginInfo = {};
         startButton.addEventListener('click', () => {
             pages.home.style.animation = 'toHide 500ms ease-in-out forwards';
             pages.scanning.style.animation = 'toShow 500ms ease-in-out forwards';
+            pages.loading.style.animation = 'toShow 500ms ease-in-out forwards';
             detect();
         });
 
@@ -39,7 +41,9 @@ let loginInfo = {};
                 const json = JSON.parse(stdout);
                 // const json = {"hosts":["172.100.0.1","172.100.0.254","172.100.1.14","172.100.1.3","172.100.1.5","172.100.3.254"],"network":"172.100.0.0/22"};
                 pages.scanning.style.animation = 'toHide 500ms ease-in-out forwards';
+                pages.loading.style.animation = 'toHide 500ms ease-in-out forwards';
                 pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
+
                 json.hosts.forEach(address => {
                     const div = document.createElement('div');
                     div.id = 'addr-' + address.replace(/\./g, '-')
@@ -57,7 +61,6 @@ let loginInfo = {};
                     div.appendChild(i);
                     pages.detecting.appendChild(div);
                 });
-
 
                 // モーダルの開閉操作
                 let isClose = false;
@@ -90,20 +93,23 @@ let loginInfo = {};
                         pages.modal.style.animation = 'toHide 500ms ease-in-out forwards';
 
                         setTimeout(() => {
-                            spawnSync(`python3 change.py ${curHost} ${loginInfo.user} ${loginInfo.pass} ${password[0].value}`)
+                            setTimeout(() => {
+                                spawnSync(`python3 change.py ${curHost} ${loginInfo.user} ${loginInfo.pass} ${password[0].value}`)
+                            }, 600);
 
                             pages.good.style.animationPlayState = 'paused';
                             pages.modal.style.animationPlayState = 'paused';
 
                             pages.good.style.animation = 'toHide 500ms ease-in-out forwards';
                             pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
-                        });
+                        }, 200);
                     }
                 });
+
                 setTimeout(() => {
                     tryLogin(json)
                 }, 100)
-            }, 100);
+            }, 600);
         };
 
         const tryLogin = json => {
