@@ -90,20 +90,20 @@ let loginInfo = {};
                         pages.modal.style.animation = 'toHide 500ms ease-in-out forwards';
 
                         setTimeout(() => {
-                            spawnSync(`python3 change.py ${curHost} ${loginInfo.user} ${loginInfo.pass} ${password[0].value}`)
+                            spawnSync(`python3 change.py ${curHost} ${loginInfo.user} ${loginInfo.pass} ${password[0].value}`, [], {shell: true})
 
                             pages.good.style.animationPlayState = 'paused';
                             pages.modal.style.animationPlayState = 'paused';
 
                             pages.good.style.animation = 'toHide 500ms ease-in-out forwards';
                             pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
-                        });
+                        }, 600);
                     }
                 });
                 setTimeout(() => {
                     tryLogin(json)
-                }, 100)
-            }, 100);
+                }, 600)
+            }, 600);
         };
 
         const tryLogin = json => {
@@ -115,7 +115,7 @@ let loginInfo = {};
                 const i = document.querySelector('#' + 'addr-' + host.replace(/\./g, '-') + '-status')
                 try {
                     const command = `python3 login.py ${host}`;
-                    const result = spawnSync(command);
+                    const result = spawnSync(command, [], {shell: true});
                     console.log(result)
                     const stdout = result.output[1].toString();
                     const stderr = result.output[2].toString();
@@ -123,8 +123,8 @@ let loginInfo = {};
                     console.log(stderr);
                     js = JSON.parse(stdout);
                     if (js.result === 'failed') {
-                        i.classList.remove('fa-clock')
-                        i.classList.add('fa-check'); // 安全
+                        i.classList.remove('far', 'fa-clock')
+                        i.classList.add('fas', 'fa-check'); // 安全
                         div.title = 'パスワードは安全です';
 
                         i.style = `

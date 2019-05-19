@@ -17,7 +17,7 @@ def getNetworkAddresses():
         for ipv4_data in ipv4_data_list:
             addr = ipaddress.ip_address(ipv4_data["addr"])
             netmask = ipv4_data["netmask"]
-            if not (addr.is_link_local or addr.is_loopback):
+            if not (addr.is_loopback):
                 network = ipaddress.ip_network('%s/%s'%(addr, netmask), False)
                 res.append(network)
     return res

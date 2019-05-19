@@ -88,6 +88,7 @@ body {
 
 #scanning {
     font-size: 28px;
+    z-index: 95;
 }
 
 #detecting {
