@@ -1,9 +1,6 @@
 console.log('Success load dom.js');
 
 const os = require('electron').remote.require('os');
-
-// こいつでコマンドを実行できます. 例: execSync('ls');
-// 戻り値はバイナリなので文字列を取り出す場合は.toString()を追加
 const spawnSync = require('child_process').spawnSync;
 let curHost = '';
 let loginInfo = {};
@@ -31,15 +28,13 @@ let loginInfo = {};
         });
 
         const detect = () => {
-            // {"hosts":["172.100.0.1","172.100.0.254","172.100.1.14","172.100.1.3","172.100.1.5","172.100.3.254"],"network":"172.100.0.0/22"}
-            // const json = {"hosts":["172.100.0.1","172.100.0.254","172.100.1.14","172.100.1.3","172.100.1.5","172.100.3.254"],"network":"172.100.0.0/22"};
             setTimeout(() => {
                 const command = 'python3 ./python/device_scan.py';
                 const result = spawnSync(command, { shell: true });
                 const stdout = result.output[1].toString();
                 const stderr = result.output[2].toString();
                 const json = JSON.parse(stdout);
-                // const json = {"hosts":["172.100.0.1","172.100.0.254","172.100.1.14","172.100.1.3","172.100.1.5","172.100.3.254"],"network":"172.100.0.0/22"};
+
                 pages.scanning.style.animation = 'toHide 500ms ease-in-out forwards';
                 pages.loading.style.animation = 'toHide 500ms ease-in-out forwards';
                 pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
@@ -48,12 +43,11 @@ let loginInfo = {};
                     const div = document.createElement('div');
                     div.id = 'addr-' + address.replace(/\./g, '-')
 
-                    // address
                     const p = document.createElement('div');
                     p.innerText = address;
 
                     const i = document.createElement('i');
-                    i.classList.add('far', 'fa-clock'); // 判定中
+                    i.classList.add('far', 'fa-clock');
                     i.id = 'addr-' + address.replace(/\./g, '-') + '-status'
                     div.title = '判定中';
 
@@ -62,7 +56,6 @@ let loginInfo = {};
                     pages.detecting.appendChild(div);
                 });
 
-                // モーダルの開閉操作
                 let isClose = false;
                 const modalForm = pages.modal.getElementsByClassName('window')[0];
                 modalForm.addEventListener('mouseenter', () => isClose = false );
@@ -78,7 +71,6 @@ let loginInfo = {};
                     }
                 });
 
-                // パスワード変更
                 const password = pages.modal.getElementsByTagName('input');
                 pages.modal.getElementsByTagName('button')[0].addEventListener('click', () => {
                     console.log(curHost, loginInfo)
@@ -88,7 +80,6 @@ let loginInfo = {};
                         pages.detecting.style.animationPlayState = 'paused';
                         pages.modal.style.animationPlayState = 'paused';
 
-                        // pages.detecting.style.animation = 'toShow 500ms ease-in-out forwards';
                         pages.good.style.animation = 'toShow 500ms ease-in-out forwards';
                         pages.modal.style.animation = 'toHide 500ms ease-in-out forwards';
 
@@ -130,7 +121,7 @@ let loginInfo = {};
                     js = JSON.parse(stdout);
                     if (js.result === 'failed') {
                         i.classList.remove('far', 'fa-clock')
-                        i.classList.add('fas', 'fa-check'); // 安全
+                        i.classList.add('fas', 'fa-check');
                         div.title = 'パスワードは安全です';
 
                         i.style = `
@@ -144,8 +135,8 @@ let loginInfo = {};
                         });
                     } else {
                         i.classList.remove('far', 'fa-clock')
-                        i.classList.add('fas', 'fa-times'); // 危険
-                        div.title = 'パスワードが突破されました(๑•ૅㅁ•๑)ｳﾞｧﾈ';
+                        i.classList.add('fas', 'fa-times');
+                        div.title = 'パスワードが突破されました';
 
                         i.style = `
                             background: #ff4d58;
@@ -153,7 +144,6 @@ let loginInfo = {};
                             padding: 4px 6px;
                         `;
 
-                        // ここでパスワード変更するクリックイベントを登録する
                         div.addEventListener('click', () => {
                             curHost = host
                             loginInfo = js
@@ -163,7 +153,7 @@ let loginInfo = {};
                     }
                 } catch (e) {
                     i.classList.remove('far', 'fa-clock')
-                    i.classList.add('fas', 'fa-check'); // 安全
+                    i.classList.add('fas', 'fa-check');
                     div.title = 'パスワードは安全です';
 
                     i.style = `
