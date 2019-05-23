@@ -13,7 +13,7 @@ SecHack2019表現駆動コースの課題で、
 
 # 開発メンバー
 
-[@Haruto Hirakawa](https://github.io/JPNYKW) (Me)  
+[@Haruto Hirakawa](https://github.com/JPNYKW) (Me)  
 [@Koya Ohashi](https://github.com/tohutohu)  
 [@Yoshikazu Fusayasu](https://github.com/YoshikazuFusayasu)  
 [@Takamichi Omori](https://github.com/onsd)
