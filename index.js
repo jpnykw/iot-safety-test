@@ -13,7 +13,6 @@ app.on('window-all-closed', function() {
     }
 });
 
-// start
 let mainWindow = null;
 app.on('ready', function() {
     mainWindow = new BrowserWindow({ width: 1000, height: 800, 
@@ -23,9 +22,6 @@ app.on('ready', function() {
         }
     });
     mainWindow.loadFile(path.resolve(__dirname, "./index.html"));
-    if (process.env.NODE_ENV !== "production") {
-        mainWindow.webContents.openDevTools()
-    }
     mainWindow.on('closed', function() {
         mainWindow = null;
     });

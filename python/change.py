@@ -4,20 +4,20 @@ import re
 import sys
 import time
 
-host = sys.argv[1]	#接続先ホスト(実行時の引数で指定)
-user = sys.argv[2]	#試行ユーザ名リスト
-password = sys.argv[3]	#試行パスワードリスト
-timeout_t = 10	#ユーザ名入力時等の応答待ち
+host = sys.argv[1]
+user = sys.argv[2]
+password = sys.argv[3]
+timeout_t = 10
 new_password = sys.argv[4]
 
 print("----------------------")
 print("password :"+password+" → "+new_password)
 print("----------------------")
 
-tn = telnetlib.Telnet(host)	#telnetへの接続
-tn.read_until(b"login:", timeout_t)	
+tn = telnetlib.Telnet(host)
+tn.read_until(b"login:", timeout_t)
 
-tn.write(user.encode('ascii') + b"\n")	
+tn.write(user.encode('ascii') + b"\n")
 tn.read_until(b"Password:", timeout_t)
 
 tn.write(password.encode('ascii') + b"\n")
@@ -35,3 +35,4 @@ tn.write(new_password.encode('ascii') + b"\n")
 time.sleep(1)
 
 tn.close()
+

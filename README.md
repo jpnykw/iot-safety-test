@@ -20,4 +20,40 @@ SecHack2019表現駆動コースの課題で、
 
 # インストールと起動方法
 
-Work in progress ...
+1. npm-install-missing をインストール
+
+```
+$ npm install -g npm-install-missing
+```
+
+2. npm-install-missing を実行
+
+```
+$ npm-install-missing
+```
+
+3. pythonのmoduleをインストール
+
+```
+$ pip install python-nmap
+$ pip install xmltodict
+$ pip install netifaces
+```
+
+`device_scan.py` が正常に動作するかを確認することを推奨します.
+
+```
+$ sudo python3 ./portScan/device_scan.py
+```
+
+エラーが発生する場合は、以下のコマンドを試してください.
+
+```
+$ brew install nmap
+```
+
+4. 起動
+
+```
+$ sudo electron .
+```

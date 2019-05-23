@@ -28,8 +28,8 @@ networkAddresses = getNetworkAddresses()
 for networkAddress in networkAddresses:
     nm = nmap.PortScanner()
     nm.scan(hosts='%s'%networkAddress, arguments="-n -sP -PE -PA21,23, 80, 3389")
-    #hosts_list = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
 
     hosts = {'hosts': nm.all_hosts(), 'network': '%s'%networkAddress}
     print(json.dumps(hosts))
     exit()
+
