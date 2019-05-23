@@ -1,14 +1,21 @@
-```
-electron .
-```
+# 初めに
 
-で起動します。
+このプロジェクトは、  
+SecHack2019表現駆動コースの課題で、  
+グループメンバーと共同制作しました.  
 
-一応`device_scan.py`を[`js/dom.js`](https://github.com/JPNYKW/SecHack365_2019_0502/blob/electron/js/dom.js)内で実行しています.  
-エラーは吐いておらず，コマンドの実行は正常にできますが，  
-端末のパスワードを入力する事ができません…  
-現状，正しい実装方法と対処方法がわかりません…  
+ネットワーク内のデバイスに対してポートスキャンを行います.  
+攻撃を行い、パスワードが脆弱であると警告を表示します.  
+また、警告が表示されたデバイスをクリックすることで、  
+デバイスのパスワードの変更を行うことが出来ます。
 
-ひとまず値を`console.log()`へ出力しています.  
-electronのwindow内でctrl + shift + iを押すか，  
-上部メニューよりview → Toggle Developer Toolsで切り替えてください.
+# 開発メンバー
+
+[@Haruto Hirakawa](https://github.io/JPNYKW) (Me)  
+[@Koya Ohashi](https://github.com/tohutohu)  
+[@Yoshikazu Fusayasu](https://github.com/YoshikazuFusayasu)  
+[@Takamichi Omori](https://github.com/onsd)
+
+# インストールと起動方法
+
+Work in progress ...
