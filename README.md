@@ -43,7 +43,7 @@ $ pip install netifaces
 `device_scan.py` が正常に動作するかを確認することを推奨します.
 
 ```
-$ sudo python3 ./portScan/device_scan.py
+$ sudo python3 ./python/device_scan.py
 ```
 
 エラーが発生する場合は、以下のコマンドを試してください.
