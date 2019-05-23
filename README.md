@@ -1,3 +1,5 @@
+SecHack期間中の進捗分は[master-old ブランチ](https://github.com/JPNYKW/SecHack365_2019_0502/tree/master-old)にあります.  
+
 # IoT-Safety-Test
 
 このプロジェクトは、  
