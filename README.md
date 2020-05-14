@@ -3,21 +3,7 @@ SecHack期間中の進捗分は[master-old ブランチ](https://github.com/JPNY
 
 # IoT Safety Test
 
-このプロジェクトは、  
-SecHack2019表現駆動コースの課題で、  
-グループメンバーと共同制作しました.  
-
-ネットワーク内のデバイスに対してポートスキャンを行います.  
-攻撃を行い、パスワードが脆弱であると警告を表示します.  
-また、警告が表示されたデバイスをクリックすることで、  
-デバイスのパスワードの変更を行うことが出来ます。
-
-# 開発メンバー
-
-[@Haruto Hirakawa](https://github.com/JPNYKW) (Owner)  
-[@Koya Ohashi](https://github.com/tohutohu)  
-[@Yoshikazu Fusayasu](https://github.com/YoshikazuFusayasu)  
-[@Takamichi Omori](https://github.com/onsd)
+このプロジェクトはSecHack2019表現駆動コースの課題でグループで制作しました。ワンクリックでネットワーク内のデバイスに対してポートスキャンを行います.辞書攻撃を行い、パスワードが脆弱であると警告を表示します.また、警告が表示されたデバイスをクリックすることで、デバイスのパスワードの変更を行うことが出来ます。
 
 # インストールと起動方法
 
